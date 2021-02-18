@@ -5,24 +5,29 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
 ```
 
-## R Markdown
+## Marcella Anderson
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This is the individual work for Marcy Anderson's analysis. I am working on question 2 as well as beginning to work on questions 4 and 5 before we reconvene on friday. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r}
+lvlChoc <- levels(choco$Location) #defines the levels
+typeChoc <- factor(choco$Location, lvlChoc) #defines the factor using the levels
 
-```{r cars}
-summary(cars)
+counts <- table(choco$Location)
+
+plt <- barplot(counts, col='steelblue', xaxt="n")
+text(plt, par("usr")[3], labels = lvlChoc, srt = 60, adj = c(1.1,1.1), xpd = TRUE, cex=0.7) 
+
+
 ```
 
-## Including Plots
+Beans by origin: 
 
-You can also embed plots, for example:
+```{r}
+boxplot(choco$Rating ~ typeChoc,  las=2)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
