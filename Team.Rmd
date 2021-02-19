@@ -72,16 +72,16 @@ There is a weak, negative relationship between cocoa percent and chocolate ratin
 
 
 ```{r}
-#lvlOrig <- levels(choco$Bean_Origin)
-#typeOrig <- factor(choco$Bean_Origin, lvlOrig)
+lvlOrig <- levels(choco$Bean_Origin)
+typeOrig <- factor(choco$Bean_Origin, lvlOrig)
 
 
-#boxplot(choco$Rating ~ typeOrig,  las=2)
+boxplot(choco$Rating ~ typeOrig,  las=2)
 ```
 
 This shows that the bean origin with the highest average rating is Tobago
 ```{r}
-#summary(typeOrig)
+summary(typeOrig)
 
 ```
 Looking at the summary we see that Tobago only has 2 chocolates which were rated there which may contribute to it's high average. Countries with more data like the Dominican Republic and Ecuador have averages closer to 3.25.
