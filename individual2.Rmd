@@ -9,22 +9,60 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+##Question 1
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
+str(choco)
+head(choco)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+1,4,5
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+##Problem 1
+hist(choco$Rating, xlab = "Chocolate Rating", main = "Histogram of Chocolate Rating")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+The histogram of chocolate ratings is unimodal and skewed to the left with a center around 3.25 and outliers around 1, 1.5, 1.75, and 2.
+
+```{r}
+boxplot(choco$Rating, main = "Boxplot of Chocolate Rating", ylab = "Rating")
+```
+
+
+The boxplot shows a median around 3.25, the 25th percentile at around 3, and the 75th percentile at 3.75. The boxplot also shows outliers at 1, 1.5, 1.75, and 2 but does not tell how many are at each point.
+
+```{r}
+##Problem 4
+##Compare country of bean origin and rating
+
+```
+
+```{r}
+##Problem 5
+##Plotting cocoa percent and rating
+plot(x = choco$Rating, y = choco$Cocoa_Percent, xlab = "Rating", ylab = "Cocoa Percent", main = "Cocoa Percent vs. Chocolate Rating")
+```
+
+The graph shows that the lowest ratings were given to the chocolates with a higher cocoa percent. The highest ratings were given to chocolates with about 60 to 80% cocoa. There are outliers that were given ratings of 1 and 1.5. 
+
+```{r}
+plot(x = choco$Cocoa_Percent, y = choco$Rating, xlab = "Cocoa Percent", ylab = "Rating", main = "Cocoa Percent vs. Chocolate Rating")
+```
+There appears to be a negative trend between the rating and the percent of cocoa. As cocoa percent increases, ratings tend to decrease. 
+
+```{r}
+hist(choco$Date, xlab = "Review Date", main = "Histogram of Review Date")
+```
+
+```{r}
+hist(choco$Rating, xlab = "Rating", main = "Histogram of Rating")
+```
+
+
+```{r}
+##Review Date and Rating
+plot(x = choco$Date, y = choco$Rating, xlab = "Review Date", ylab = "Rating", main = "Review Date vs. Chocolate Rating")
+```
+
