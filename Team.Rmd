@@ -5,6 +5,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
 choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
 ```
 
@@ -110,7 +111,35 @@ cor(x = choco$Date, y = choco$Rating)
 
 There is a weak, positive correlation between chocolate ratings and review date.
 
+We then looked at the different characteristics and which were most used
 
+```{r}
+it <- summarise(group_by(choco, Cocoa_Percent), meanRating = mean(Rating))
+plot(it$Cocoa_Percent, it$meanRating)
 
+char1head <- head(sort(table(choco$Characteristics1), decreasing = TRUE), 10)
+char2head <- head(sort(table(choco$Characteristics2), decreasing = TRUE), 10)
+char3head <- head(sort(table(choco$Characteristics3), decreasing = TRUE), 10)
+
+#hist(char1head)
+char1l <- c('creamy', 'sandy', 'intense', 'nutty', 'fatty')
+char11 <- choco[choco$Characteristics1 == char1l[1], ]
+char11m <- mean(char11$Rating)
+char12 <- choco[choco$Characteristics1 == char1l[2], ]
+char12m <- mean(char12$Rating)
+char13 <- choco[choco$Characteristics1 == char1l[3], ]
+char13m <- mean(char13$Rating)
+char14 <- choco[choco$Characteristics1 == char1l[4], ]
+char14m <- mean(char14$Rating)
+char15 <- choco[choco$Characteristics1 == char1l[5], ]
+char15m <- mean(char15$Rating)
+
+plotd <- c(char11m, char12m, char13m, char14m, char15m)
+
+barplot(plotd, names.arg = char1l, xlab = 'Top 5 Characteristics', ylab = 'Mean Rating', col = 'brown', main = 'Mean Ratings for the Top 5 Characteristics')
+
+```
+
+There did not seem to be a strong difference between the ratings of the top five characteristics. All of them have relatively high average ratings. Creamy is the one that stands out as the top though, making it the most positive characteristic of the top 5. 
 
 
