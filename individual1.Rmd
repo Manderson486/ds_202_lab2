@@ -30,4 +30,5 @@ Beans by origin:
 boxplot(choco$Rating ~ typeChoc,  las=2)
 
 
+
 ```

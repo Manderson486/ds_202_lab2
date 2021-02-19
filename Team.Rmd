@@ -1,0 +1,62 @@
+---
+title: "Team"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
+```
+
+## Team Documentation
+
+This is the work on the choco lab from Marcella Anderson, Caitlin Fordell, and Mario Lloyd Galvao-Wilson
+
+### Problem 1
+
+```{r}
+##Problem 1
+hist(choco$Rating, xlab = "Chocolate Rating", main = "Histogram of Chocolate Rating")
+```
+
+The histogram of chocolate ratings is unimodal and skewed to the left with a center around 3.25 and outliers around 1, 1.5, 1.75, and 2.
+
+```{r}
+boxplot(choco$Rating, main = "Boxplot of Chocolate Rating", ylab = "Rating")
+```
+
+
+The boxplot shows a median around 3.25, the 25th percentile at around 3, and the 75th percentile at 3.75. The boxplot also shows outliers at 1, 1.5, 1.75, and 2 but does not tell how many are at each point.
+
+
+### Problem 2
+
+```{r}
+lvlChoc <- levels(choco$Location) #defines the levels
+typeChoc <- factor(choco$Location, lvlChoc) #defines the factor using the levels
+
+counts <- table(choco$Location)
+
+plt <- barplot(counts, col='steelblue', xaxt="n")
+text(plt, par("usr")[3], labels = lvlChoc, srt = 60, adj = c(1.1,1.1), xpd = TRUE, cex=0.7) 
+
+```
+
+
+### Problem 3
+
+
+
+### Problem 4
+
+```{r}
+boxplot(choco$Rating ~ typeChoc,  las=2)
+
+
+
+```
+
+### Problem 5
+
+
+
