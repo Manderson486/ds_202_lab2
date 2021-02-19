@@ -17,8 +17,6 @@ head(choco)
 ```
 
 
-1,4,5
-
 ```{r}
 ##Problem 1
 hist(choco$Rating, xlab = "Chocolate Rating", main = "Histogram of Chocolate Rating")
@@ -33,14 +31,8 @@ boxplot(choco$Rating, main = "Boxplot of Chocolate Rating", ylab = "Rating")
 
 The boxplot shows a median around 3.25, the 25th percentile at around 3, and the 75th percentile at 3.75. The boxplot also shows outliers at 1, 1.5, 1.75, and 2 but does not tell how many are at each point.
 
-```{r}
-##Problem 4
-##Compare country of bean origin and rating
-
-```
 
 ```{r}
-##Problem 5
 ##Plotting cocoa percent and rating
 plot(x = choco$Rating, y = choco$Cocoa_Percent, xlab = "Rating", ylab = "Cocoa Percent", main = "Cocoa Percent vs. Chocolate Rating")
 ```
@@ -53,16 +45,28 @@ plot(x = choco$Cocoa_Percent, y = choco$Rating, xlab = "Cocoa Percent", ylab = "
 There appears to be a negative trend between the rating and the percent of cocoa. As cocoa percent increases, ratings tend to decrease. 
 
 ```{r}
-hist(choco$Date, xlab = "Review Date", main = "Histogram of Review Date")
+##finding correlation between cocoa percent and rating
+cor(x = choco$Cocoa_Percent, y = choco$Rating)
 ```
 
+There is a weak, negative relationship between cocoa percent and chocolate rating. 
+
 ```{r}
+##histogram of review date
+hist(choco$Date, xlab = "Review Date", main = "Histogram of Review Date")
+```
+Most of the reviews seemed to have been taken around 2014, and the company seemed take less reviews in 2016 and 2020. 
+
+```{r}
+##creating a histogram of rating
 hist(choco$Rating, xlab = "Rating", main = "Histogram of Rating")
 ```
 
+The most popular ratings were 2.75 and 3.5, and there appear to be outliers of ratings at 1, 1.5, 1.75, and 2.
 
 ```{r}
-##Review Date and Rating
-plot(x = choco$Date, y = choco$Rating, xlab = "Review Date", ylab = "Rating", main = "Review Date vs. Chocolate Rating")
+##creating a summary of ratings
+summary(choco$Rating)
 ```
 
+The minimum rating was 1, the mean rating was 3.184, the median rating was 3.25, and the maximum rating was 4. 
