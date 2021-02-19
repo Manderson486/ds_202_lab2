@@ -63,7 +63,19 @@ hist(choco$Date, xlab = "Review Date", main = "Histogram of Review Date")
 ```
 Most of the reviews seemed to have been taken around 2014, and the company seemed take less reviews in 2016 and 2020. 
 
+```{r}
+##Problem 5
+plot(x = choco$Date, y = choco$Rating, xlab = "Review Date", ylab = "Chocolate Rating", main = "Review Date vs. Chocolate Rating")
+```
 
+There seems to be a positive trend between review date and chocolate rating, meaning that in the more recent years, the chocolate ratings have been more consistently high.
+
+```{r}
+##Problem 5
+cor(x = choco$Date, y = choco$Rating)
+```
+
+There is a weak, positive correlation between chocolate ratings and review date.
 
 ```{r}
 ##Problem 3 or 5
