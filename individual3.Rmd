@@ -7,22 +7,44 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+```{r}
+choco <- read.csv("https://raw.githubusercontent.com/xdaiISU/ds202materials/master/hwlabs/data/choco.csv") 
+str(choco)
+##?plot
+plot(choco$Rating, choco$Bean_origin)
+##?boxplot
+plot(choco$Rating, choco$Cocoa_Percent)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+c <- mean(choco$Cocoa_Percent)
+##plot(c, choco$Rating)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+str(choco)
 
-```{r cars}
-summary(cars)
+m <- mean(choco$Rating)
+origin <- choco$Bean_Origin
+org <- factor(origin)
+org
+##boxplot(choco$Rating, org)
+
+med <- median(choco$Cocoa_Percent)
+highpct <- choco[choco$Cocoa_Percent >= med, ]
+lowpct <- choco[choco$Cocoa_Percent < med, ]
+
+hist(highpct$Rating)
+hist(lowpct$Rating)
+
+library(dplyr)
+it <- summarise(group_by(choco, Cocoa_Percent), meanRating = mean(Rating))
+plot(it$Cocoa_Percent, it$meanRating)
+
+char1head <- head(sort(table(choco$Characteristics1), decreasing = TRUE), 10)
+char2head <- head(sort(table(choco$Characteristics2), decreasing = TRUE), 10)
+char3head <- head(sort(table(choco$Characteristics3), decreasing = TRUE), 10)
+
+hist(char1head)
+
+
+
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
