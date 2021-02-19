@@ -27,8 +27,15 @@ text(plt, par("usr")[3], labels = lvlChoc, srt = 60, adj = c(1.1,1.1), xpd = TRU
 Beans by origin: 
 
 ```{r}
-boxplot(choco$Rating ~ typeChoc,  las=2)
+lvlOrig <- levels(choco$Bean_Origin)
+typeOrig <- factor(choco$Bean_Origin, lvlOrig)
 
 
+boxplot(choco$Rating ~ typeOrig,  las=2)
+
+summary(typeOrig)
 
 ```
+
+
+Beans by origin and rating
