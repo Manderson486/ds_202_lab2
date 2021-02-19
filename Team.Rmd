@@ -46,6 +46,10 @@ text(plt, par("usr")[3], labels = lvlChoc, srt = 60, adj = c(1.1,1.1), xpd = TRU
 ```{r}
 ##Plotting cocoa percent and rating
 plot(x = choco$Rating, y = choco$Cocoa_Percent, xlab = "Rating", ylab = "Cocoa Percent", main = "Cocoa Percent vs. Chocolate Rating")
+
+library(dplyr)
+it <- summarise(group_by(choco, Cocoa_Percent), meanRating = mean(Rating))
+plot(it$Cocoa_Percent, it$meanRating, xlab = 'Cocoa Percent', ylab = 'Mean Rating', main = 'Mean Ratings Based on Cocoa Percent')
 ```
 
 The graph shows that the lowest ratings were given to the chocolates with a higher cocoa percent. The highest ratings were given to chocolates with about 60 to 80% cocoa. There are outliers that were given ratings of 1 and 1.5. 
@@ -67,16 +71,16 @@ There is a weak, negative relationship between cocoa percent and chocolate ratin
 
 
 ```{r}
-lvlOrig <- levels(choco$Bean_Origin)
-typeOrig <- factor(choco$Bean_Origin, lvlOrig)
+#lvlOrig <- levels(choco$Bean_Origin)
+#typeOrig <- factor(choco$Bean_Origin, lvlOrig)
 
 
-boxplot(choco$Rating ~ typeOrig,  las=2)
+#boxplot(choco$Rating ~ typeOrig,  las=2)
 ```
 
-This shows that the bean oragin with the higest average rating is tobago
+This shows that the bean origin with the highest average rating is Tobago
 ```{r}
-summary(typeOrig)
+#summary(typeOrig)
 
 ```
 Looking at the summary we see that Tobago only has 2 chocolates which were rated there which may contribute to it's high average. Countries with more data like the Dominican Republic and Ecuador have averages closer to 3.25.
